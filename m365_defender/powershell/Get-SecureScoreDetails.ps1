@@ -35,7 +35,7 @@ Param(
     [switch] $showFullScoreDetails
 )
 
-#Determin if verbose output is required
+#Determine if verbose output is required
 if ($verboseOuput) {
     $oldverbose = $VerbosePreference
     $VerbosePreference = "continue" 
