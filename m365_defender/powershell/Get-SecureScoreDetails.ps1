@@ -16,7 +16,7 @@ Notes:      Register AAD Application with Graph API permissions of "SecurityEven
 .\Get-SecureScoreDetails.ps1 -TenantId '' -AppId '' -AppSecret ''
 
 .Example
-.\Get-SecureScoreDetails.ps1 -TenantId '' -AppId '' -AppSecret '' showFullScoreDetails
+.\Get-SecureScoreDetails.ps1 -TenantId '' -AppId '' -AppSecret '' -showFullScoreDetails
 
 .Example
 .\Get-SecureScoreDetails.ps1 -TenantId '' -AppId '' -AppSecret '' -verboseOuput
