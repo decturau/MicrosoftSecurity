@@ -16,6 +16,9 @@ Notes:      Register AAD Application with Graph API permissions of "SecurityEven
 .\Get-SecureScoreDetails.ps1 -TenantId '' -AppId '' -AppSecret ''
 
 .Example
+.\Get-SecureScoreDetails.ps1 -TenantId '' -AppId '' -AppSecret '' showFullScoreDetails
+
+.Example
 .\Get-SecureScoreDetails.ps1 -TenantId '' -AppId '' -AppSecret '' -verboseOuput
 
 #>
@@ -28,7 +31,8 @@ Param(
     [String] $AppId,
     [Parameter(Mandatory = $True)]
     [String] $AppSecret,
-    [switch] $verboseOuput
+    [switch] $verboseOuput,
+    [switch] $showFullScoreDetails
 )
 
 #Determin if verbose output is required
@@ -125,10 +129,10 @@ foreach ($_ in ($secureScoreLatest).ControlScores) {
     #Add details for each object to a table
     Write-Verbose "Adding details to table for profile id $($_.ControlName)"
     $DetailedControlScores = [PSCustomObject]@{
+        'controlProfile'               = $_.ControlName
         'controlCategory'              = $_.ControlCategory
         'myControlItemScore'           = $_.Score
         'maxControlItemScore'          = $controlProfileMaxScore
-        'myControlItemScorePercentage' = $_.AdditionalProperties.scoreInPercentage
     }
 
     #Add all objects to the combined table
@@ -202,6 +206,11 @@ $report = foreach ($_ in $controlCategoryTable) {
 
 Write-Verbose "Displaying secure score final report" 
 $FinalSecureScoreReport | Format-Table
+
+if ($showFullScoreDetails) {
+    Write-Verbose "Displaying secure score full details report" 
+    $DetailedControlScoresTable
+}
 
 Write-Verbose "Setting verbose preferences back to orignal"
 $VerbosePreference = $oldverbose
