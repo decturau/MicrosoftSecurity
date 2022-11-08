@@ -163,13 +163,11 @@ $report = foreach ($_ in $controlCategoryTable) {
         Write-Verbose "Setting other tenant averages for Identity comparison"
         $allTenantAverage = $allTenantsAverageIdentity
         $similarSeatAverage = $TotalSeatsAverageIdentity
-        write-host "identity true"
     }
     elseif ($_.Category -eq "Apps") {
         Write-Verbose "Setting other tenant averages for Apps comparison"
         $allTenantAverage = $allTenantsAverageApps
         $similarSeatAverage = $TotalSeatsAverageApps
-        write-host "apps true"
     }
     elseif ($_.Category -eq "Device") {
         Write-Verbose "Setting other tenant averages for Device comparison"
